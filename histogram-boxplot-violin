@@ -1,0 +1,125 @@
+## Histogram and Density
+
+import seaborn as sns
+diamonds = sns.load_dataset('diamonds')
+df = diamonds.copy()
+df.head()
+
+sns.distplot(df.price, kde = False);
+
+df["price"].describe()
+?sns.distplot
+
+sns.distplot(df.price, bins = 10, kde = False);
+sns.distplot(df.price);
+sns.distplot(df.price, hist = False);
+sns.kdeplot(df.price, shade = True);
+
+
+## crossovers
+import seaborn as sns
+diamonds = sns.load_dataset('diamonds')
+df = diamonds.copy()
+df.head()
+
+sns.kdeplot(df.price, shade = True);
+
+(sns
+ .FacetGrid(df,
+              hue = "cut",
+              height = 5,
+              xlim = (0, 10000))
+ .map(sns.kdeplot, "price", shade= True)
+ .add_legend()
+);
+
+
+sns.catplot(x = "cut", y = "price", hue = "color", kind = "point", data = df);
+
+
+## BOXPLOT
+
+import seaborn as sns
+tips = sns.load_dataset("tips")
+df = tips.copy()
+df.head()
+df.describe().T
+
+df["sex"].value_counts()
+df["smoker"].value_counts()
+df["day"].value_counts()
+df["time"].value_counts()
+
+sns.boxplot(x = df["total_bill"]);
+sns.boxplot(x = df["total_bill"], orient = "v");
+
+
+## crossovers
+df.describe().T
+
+# Which days do we earn more?
+sns.boxplot(x = "day", y = "total_bill", data = df);
+
+# do we earn more in the morning or evening?
+sns.boxplot(x = "time", y = "total_bill", data = df);
+
+# person count gain
+sns.boxplot(x = "size", y = "total_bill", data = df);
+
+
+sns.boxplot(x = "day", y = "total_bill", hue = "sex", data = df);
+
+
+
+## VIOLIN
+
+df.head()
+sns.catplot(y = "total_bill", kind = "violin", data = df);
+
+
+# crossovers
+sns.catplot(x= "day", y = "total_bill", kind = "violin", data = df);
+
+sns.catplot(x= "day", y = "total_bill", hue = "sex",kind = "violin", data = df);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
